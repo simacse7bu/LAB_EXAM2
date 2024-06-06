@@ -20,7 +20,8 @@ class _RegistrationPageState extends State<RegistrationPage> {
   Future<void> _register() async {
     if (_formKey.currentState!.validate()) {
       final response = await http.post(
-        Uri.parse('https://task-management-backend-vhcq.onrender.com/api/v1/registration'),
+        Uri.parse(
+            'https://task-management-backend-vhcq.onrender.com/api/v1/registration'),
         headers: {'Content-Type': 'application/json'},
         body: jsonEncode({
           'email': _emailController.text,
@@ -42,10 +43,12 @@ class _RegistrationPageState extends State<RegistrationPage> {
             ),
           );
         } else {
-          ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text('Registration failed')));
+          ScaffoldMessenger.of(context)
+              .showSnackBar(SnackBar(content: Text('Registration failed')));
         }
       } else {
-        ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text('Error: ${response.statusCode}')));
+        ScaffoldMessenger.of(context).showSnackBar(
+            SnackBar(content: Text('Error: ${response.statusCode}')));
       }
     }
   }
@@ -88,7 +91,8 @@ class _RegistrationPageState extends State<RegistrationPage> {
               TextFormField(
                 controller: _firstNameController,
                 decoration: InputDecoration(labelText: 'First Name'),
-                validator: (value) => value!.isEmpty ? 'Enter first name' : null,
+                validator: (value) =>
+                    value!.isEmpty ? 'Enter first name' : null,
               ),
               TextFormField(
                 controller: _lastNameController,
@@ -98,7 +102,8 @@ class _RegistrationPageState extends State<RegistrationPage> {
               TextFormField(
                 controller: _mobileController,
                 decoration: InputDecoration(labelText: 'Mobile'),
-                validator: (value) => value!.isEmpty ? 'Enter mobile number' : null,
+                validator: (value) =>
+                    value!.isEmpty ? 'Enter mobile number' : null,
               ),
               TextFormField(
                 controller: _photoController,
